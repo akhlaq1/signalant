@@ -1,0 +1,2 @@
+# signalant
+Trading Signals App

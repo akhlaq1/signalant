@@ -1,0 +1,140 @@
+// mixins for grid system
+// ------------------------
+.gx-make-row() {
+  margin-left: (@grid-gutter-width / -2);
+  margin-right: (@grid-gutter-width / -2);
+}
+
+.make-grid-columns() {
+  .col(@index) {
+    @item: ~".@{ant-prefix}-col-@{index}, .@{ant-prefix}-col-xs-@{index}, .@{ant-prefix}-col-sm-@{index}, .@{ant-prefix}-col-md-@{index}, .@{ant-prefix}-col-lg-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) {
+    @item: ~".@{ant-prefix}-col-@{index}, .@{ant-prefix}-col-xs-@{index}, .@{ant-prefix}-col-sm-@{index}, .@{ant-prefix}-col-md-@{index}, .@{ant-prefix}-col-lg-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      // Prevent columns from collapsing when empty
+      padding-left: (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+      float: none !important;
+    }
+  }
+  .col(1);
+}
+
+// Grid system
+.ant-row {
+  justify-content: center;
+  .gx-make-row();
+  .flex-display(flex, row, wrap);
+
+  & > [class*=ant-col-] {
+    margin: 0 -0.3px;
+  }
+}
+
+/* hi-res laptops and desktops */
+
+@media (min-width:1281px){
+  .akhil{
+   display: flex;
+   justify-content: center;
+  }
+  .siva{
+   width: 25%;
+  }
+  .siva1{
+   width: 25%;
+  }
+  }
+  
+  /* big landscape tablets, laptops, and desktops */
+  @media (min-width:1025px){
+   .akhil{
+     display: flex;
+     justify-content: center;
+   }
+   .siva{
+     width: 50%;
+   }
+  }
+  
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  @media (min-width:641px){
+   .akhil{
+     display: flex;
+     justify-content: center;
+   }
+   .siva{
+     width: 50%;
+   }
+  }
+  
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  @media (min-width:961px){
+   .akhil{
+     display: flex;
+     justify-content: center;
+   }
+   .siva{
+     width: 25%;
+   }
+  }
+  
+.@{class-prefix}-col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+}
+
+.@{class-prefix}-col-full {
+  @media screen and (max-width: (@screen-xs-max - 95px)) {
+    width: 100%;
+  }
+}
+
+.hide-mobile {
+  @media (max-width: 480px) {
+    display: none;
+  }
+  //for iPad
+  @media (max-width: 768px) {
+    display: none;
+  }
+ }
+ 
+ .hide-mobile1 {
+  @media (max-width: 480px) {
+    display: block;
+  }
+  @media (min-width:1281px){
+    display: flex;
+  }
+ }
+ 
+ .signinlogodesktop{
+  @media (max-width: 480px) {
+    display: none;
+  }
+ }
+ .signinlogomobile{
+ 
+  @media (min-width:1281px){
+    display: none;
+  }
+  @media (min-width:1024px){
+    display: none;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    display: block;
+  }
+ }
+
